@@ -1,0 +1,38 @@
+
+============== GBMCMC Version: =============
+
+  Git commit: 67c9704c6d35c21fa15b401237e78f6f3f78a291
+
+=============== RUN SETTINGS ===============
+
+  Command Line: /home/ben/ldasoft/master/bin/gb_mcmc --data /home/ben/ldc_project/segment/LDC1-4_GB_v1_3_months.dat --frac-freq --fmin 0.006005 --samples 64 --duration 7864320 --chainseed 5678 --verbose 
+
+  Orbit model is ...... EccentricInclined 
+  Data channels ........AE
+  Data sample size .... 64   
+  Data padding size ... 0   
+  Data start time ..... 0 
+  Data start frequency. 0.006004969278971354
+  Data duration ....... 7864320 
+  Data segments ....... 1   
+  Data gap duration.....0 
+  Data format is........frequency   
+  Max # of sources......10   
+  MCMC steps............100000   
+  MCMC burnin steps.....100000   
+  MCMC chain seed ..... 5678  
+
+================= RUN FLAGS ================
+  Verbose flag ........ ENABLED 
+  Quiet flag .......... DISABLED
+  Injection is ........ DISABLED
+  Sky parameters are... ENABLED
+  Calibration is....... DISABLED
+  Galaxy prior is ..... DISABLED
+  SNR prior is ........ DISABLED
+  Noise simulation is.. DISABLED
+  RJMCMC is ........... ENABLED
+  Mchirp prior is...... DISABLED
+
+
+ ELAPSED TIME = 47079 second

@@ -1,0 +1,44 @@
+!rm Fstat.mp4
+set terminal pngcairo size 1024,512 enhanced font 'Verdana,12'
+
+# perula palette
+set palette defined (0 '#352a87', 1 '#0363e1', 2 '#1485d4', 3 '#06a7c6', 4 '#38b99e', 5 '#92bf73', 6 '#d9ba56', 7 '#fcce2e', 8 '#f9fb0e')
+
+
+unset colorbox
+unset key
+unset label
+set tics scale 2 font ',8'
+set xlabel '{/Symbol f}
+set ylabel 'cos({/Symbol q})' offset 1
+
+
+df0 = 3.17891e-08
+dph = 0.5*2.*pi/30.
+dth = 0.5*2./30.
+
+set pm3d map
+
+do for [ii=0:256-1:+1]{
+  set output sprintf('fstat_frame%05.0f.png',ii)
+  set size 1,1
+  set multiplot title sprintf('f = %f ',(ii*df0+0.00600497)*1000)
+  set size 0.5,1
+
+  set origin 0,0
+  set cbrange [0.001:25.0918]
+  input = sprintf('skymap_%05.0f.dat',ii)
+  splot [0:2*pi] [-1:1] input u ($2+dph):($1+dth):3
+
+  set origin 0.5,0
+  set cbrange [log(0.001):log(25.0918)]
+  input = sprintf('skymap_%05.0f.dat',ii)
+  splot [0:2*pi] [-1:1] input u ($2+dph):($1+dth):(log($3))
+  unset multiplot
+}
+
+# Create animation
+CMD = 'ffmpeg -r 256 -f image2 -s 3840x1080 -start_number 0 -i fstat_frame%05d.png -vframes 256 -vcodec libx264 -crf 25  -pix_fmt yuv420p Fstat.mp4'
+system(CMD)
+
+!rm *.png
